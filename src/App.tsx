@@ -8,6 +8,7 @@ import {
   Button,
   Link,
   CircularProgress,
+  Grid
 } from "@mui/material";
 import RepoCards, { type Repo } from "./components/Cards";
 import Info from "./components/info";
@@ -103,24 +104,27 @@ function App() {
       <Info />
       </Box>
 
-      <Container sx={{ mt: 6, mb: 6 }}>
-        <Typography
-          variant="h4"
-          gutterBottom
-          align="center"
-          sx={{ fontWeight: "bold", mb: 4 }}
-        >
-          Mis proyectos públicos en GitHub
-        </Typography>
+<Container sx={{ mt: 6, mb: 6 }}>
+  <Typography
+    variant="h4"
+    gutterBottom
+    align="center"
+    sx={{ fontWeight: "bold", mb: 4 }}
+  >
+    Mis proyectos públicos en GitHub
+  </Typography>
 
-        {loading ? (
-          <Box display="flex" justifyContent="center" mt={8}>
-            <CircularProgress />
-          </Box>
-        ) : (
-          <RepoCards repos={repos} />
-        )}
-      </Container>
+  {loading ? (
+    <Box display="grid" justifyContent="center" mt={8}>
+      <CircularProgress />
+    </Box>
+  ) : (
+    <Grid container spacing={3} justifyContent="center">
+      <RepoCards repos={repos} />
+    </Grid>
+  )}
+</Container>
+
 
       <Box
         component="footer"

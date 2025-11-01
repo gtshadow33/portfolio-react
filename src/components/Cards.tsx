@@ -53,7 +53,7 @@ function RepoCard({ repo }: { repo: Repo }) {
   return (
     <Card
       sx={{
-        width: "300px",
+        width: "400px",
         maxWidth: 600,
         minHeight: 150,
         display: "flex",
