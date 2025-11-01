@@ -5,43 +5,34 @@ import {
   Toolbar,
   Typography,
   Container,
-  Card,
-  CardContent,
-  CardActions,
   Button,
   Link,
   CircularProgress,
 } from "@mui/material";
-
-interface Repo {
-  id: number;
-  name: string;
-  html_url: string;
-  fork: boolean;
-  language: string | null;
-  description?: string | null;
-}
+import RepoCards, { type Repo } from "./components/Cards";
+import Info from "./components/info";
 
 function App() {
   const [repos, setRepos] = useState<Repo[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://api.github.com/users/gtshadow33/repos")
-      .then((res) => res.json())
-      .then((data: Repo[]) => {
-        setRepos(data.filter((repo) => !repo.fork));
+    const fetchRepos = async () => {
+      try {
+        const res = await fetch("https://api.github.com/users/gtshadow33/repos");
+        const data = await res.json();
+        setRepos(data.filter((repo: Repo) => !repo.fork));
+      } catch (error) {
+        console.error("Error al obtener repos:", error);
+      } finally {
         setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error al obtener repos:", err);
-        setLoading(false);
-      });
+      }
+    };
+    fetchRepos();
   }, []);
 
   return (
     <>
-      {/* 🔹 Barra superior */}
       <AppBar
         position="sticky"
         sx={{
@@ -68,11 +59,9 @@ function App() {
         </Toolbar>
       </AppBar>
 
-      {/* 🔹 Sección inspiradora con imagen de fondo */}
       <Box
         sx={{
           position: "relative",
-          width: "100%",
           py: 12,
           textAlign: "center",
           color: "white",
@@ -80,7 +69,6 @@ function App() {
             'url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80")',
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
           "&::before": {
             content: '""',
             position: "absolute",
@@ -107,12 +95,14 @@ function App() {
               textShadow: "0 1px 4px rgba(0,0,0,0.5)",
             }}
           >
-            Muchas gracias a todos por su apoyo — cada proyecto es un paso más 🚀
+            Muchas gracias a todos por su apoyo — cada proyecto es un paso más 
           </Typography>
         </Box>
+      </Box >
+      <Box sx={{ position: "relative", zIndex: 1 }}>
+      <Info />
       </Box>
 
-      {/* 🔹 Contenido principal */}
       <Container sx={{ mt: 6, mb: 6 }}>
         <Typography
           variant="h4"
@@ -128,90 +118,10 @@ function App() {
             <CircularProgress />
           </Box>
         ) : (
-          <Box
-            display="flex"
-            flexWrap="wrap"
-            justifyContent="center"
-            gap={2}
-          >
-            {repos.map((repo) => (
-              <Card
-                key={repo.id}
-                sx={{
-                  width: 240,
-                  height: "auto",
-                  minHeight: 160,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  p: 1.5,
-                  borderRadius: 2,
-                  boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
-                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
-                  "&:hover": {
-                    transform: "scale(1.04)",
-                    boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
-                  },
-                }}
-              >
-                <CardContent sx={{ p: 1 }}>
-                  <Typography
-                    variant="subtitle1"
-                    gutterBottom
-                    sx={{
-                      fontWeight: 600,
-                      textOverflow: "ellipsis",
-                      overflow: "hidden",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {repo.name}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{
-                      mb: 1,
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      display: "-webkit-box",
-                      WebkitLineClamp: 2,
-                      WebkitBoxOrient: "vertical",
-                      lineHeight: 1.3,
-                      fontSize: "0.85rem",
-                    }}
-                  >
-                    {repo.description || "Proyecto sin descripción."}
-                  </Typography>
-                  <Typography
-                    variant="caption"
-                    color="text.secondary"
-                    sx={{ fontSize: "0.75rem" }}
-                  >
-                    Lenguaje: {repo.language || "No especificado"}
-                  </Typography>
-                </CardContent>
-
-                <CardActions sx={{ p: 1 }}>
-                  <Button
-                    size="small"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    component={Link}
-                    href={repo.html_url}
-                    target="_blank"
-                  >
-                    Ver →
-                  </Button>
-                </CardActions>
-              </Card>
-            ))}
-          </Box>
+          <RepoCards repos={repos} />
         )}
       </Container>
 
-      {/* 🔹 Pie de página */}
       <Box
         component="footer"
         sx={{
@@ -232,7 +142,7 @@ function App() {
           </Link>
         </Typography>
         <Typography variant="caption" color="text.secondary">
-          Disponible para colaboraciones y nuevos proyectos 🌟
+          Disponible para colaboraciones y nuevos proyectos
         </Typography>
       </Box>
     </>

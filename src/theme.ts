@@ -16,20 +16,7 @@ const theme = createTheme({
   typography: {
     fontFamily: "'Roboto', sans-serif",
   },
-  components: {
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          borderRadius: 12,
-          transition: "transform 0.2s ease, box-shadow 0.2s ease",
-          "&:hover": {
-            transform: "scale(1.03)",
-            boxShadow: "0 4px 20px rgba(0,0,0,0.4)",
-          },
-        },
-      },
-    },
-  },
+
 });
 
 export default theme;
