@@ -55,7 +55,7 @@ function RepoCard({ repo }: { repo: Repo }) {
       sx={{
         width: "400px",
         maxWidth: 600,
-        minHeight: 150,
+        Height: "10vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -69,7 +69,7 @@ function RepoCard({ repo }: { repo: Repo }) {
         },
       }}
     >
-      <CardContent sx={{ p: 1 }}>
+      <CardContent sx={{ p: 1, height: "22vh" }}>
         <Typography
           variant="subtitle1"
           gutterBottom
@@ -87,18 +87,22 @@ function RepoCard({ repo }: { repo: Repo }) {
           color="text.secondary"
           sx={{
             mb: 1,
+            height: "12vh",
             overflow: "hidden",
             textOverflow: "ellipsis",
             display: "-webkit-box",
             WebkitLineClamp: 2,
             WebkitBoxOrient: "vertical",
             lineHeight: 1.3,
-            fontSize: "0.9rem",
+            fontSize: "1.8vh",
           }}
         >
           {repo.description || "Proyecto sin descripción."}
         </Typography>
-        <Typography variant="caption" color="text.secondary">
+        <Typography variant="body2" color="text.secondary"
+        sx={{
+          fontWeight: "bold", fontSize: "1.6vh",
+        }}>
           Lenguaje: {repo.language || "No especificado"}
         </Typography>
       </CardContent>
