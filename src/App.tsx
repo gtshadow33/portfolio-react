@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import RepoCards, { type Repo } from "./components/Cards";
 import Info from "./components/info";
+import Future from "./components/Future";
 
 function App() {
   const [repos, setRepos] = useState<Repo[]>([]);
@@ -124,6 +125,8 @@ function App() {
     </Grid>
   )}
 </Container>
+
+      <Future />
 
 
       <Box
