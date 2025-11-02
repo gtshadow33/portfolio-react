@@ -52,12 +52,12 @@ function App() {
             sx={{
               height: 32,
               textTransform: "none",
-              border: "1px solid rgba(255,255,255,0.3)",
+              border: "2px solid rgba(255,255,255,0.3)",
               borderRadius: 2,
               backgroundImage: 'url("https://img.icons8.com/ios/50/mail.png")',
               backgroundSize: "24px 24px",
               backgroundRepeat: "no-repeat",
-              backgroundPosition: "center"
+              backgroundPosition: "center",
             }}
           >
           </Button>
