@@ -1,6 +1,6 @@
 
-import { Box, Typography, Button, Container } from "@mui/material";
-import { Code as CodeIcon, Group as GroupIcon } from "@mui/icons-material";
+import { Box, Typography, Button, Container, Avatar } from "@mui/material";
+import { Code as CodeIcon} from "@mui/icons-material";
 
 export default function Future() {
   return (
@@ -15,7 +15,18 @@ export default function Future() {
       }}
     >
       <Container maxWidth="md">
-        <GroupIcon color="primary" sx={{ fontSize: 60, mb: 2 }} />
+        <Avatar
+        src="https://avatars.githubusercontent.com/u/237056829?v=4"
+        alt="Foto de perfil o ilustración"
+        sx={{
+          margin: "0 auto",
+          mb: 4,
+          width: 180,
+          height: 180,
+          border: "3px solid rgba(0,0,0,0.1)",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.25)",
+        }}
+      />
         <Typography
           variant="h4"
           fontWeight="bold"
