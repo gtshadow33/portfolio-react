@@ -60,6 +60,11 @@ export default function Skills() {
             boxShadow: 3,
             backgroundColor: "#0d1117",
             color: "#e6edf3",
+            transition: "box-shadow 0.3s ease-in-out",
+            ":hover": {
+              transform: "scale(1.03)",
+              boxShadow: "0 6px 12px rgba(0,0,0,0.25)",
+            },
           }}
         >
           <CardContent>
@@ -89,6 +94,7 @@ export default function Skills() {
                     backgroundColor: "#30363d",
                     "& .MuiLinearProgress-bar": {
                       backgroundColor: "#238636",
+                      ":hover": { backgroundColor: "#2ea043" },
                     },
                   }}
                 />
