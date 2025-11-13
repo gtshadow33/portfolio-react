@@ -13,6 +13,7 @@ import {
 import RepoCards, { type Repo } from "./components/Cards";
 import Info from "./components/info";
 import Future from "./components/Future";
+import Skills from "./components/skills";
 
 function App() {
   const [repos, setRepos] = useState<Repo[]>([]);
@@ -129,7 +130,7 @@ function App() {
     </Grid>
   )}
 </Container>
-
+      <Skills />
       <Future />
 
 
