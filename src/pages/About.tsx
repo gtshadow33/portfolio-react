@@ -18,7 +18,7 @@ export default function About() {
             to="/"
             sx={{ textTransform: "none" }}
           >
-            Portafoliosde Gtshadow33
+            Portafolios de Gtshadow33
           </Button>
 
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
