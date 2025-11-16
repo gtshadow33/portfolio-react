@@ -19,6 +19,7 @@ const skills = [
       { name: "JavaScript / TypeScript (para react y tauri)", level: 75 },
       { name: "Bash", level: 80 },
       { name: "Mysql", level: 70 },
+      { name: "c# (En proceso)", level: 40 },
     ],
   },
   {
